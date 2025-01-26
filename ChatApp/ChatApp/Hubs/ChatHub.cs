@@ -20,7 +20,7 @@ public class ChatHub: Hub
         _dbContext.connections[Context.ConnectionId] = userRoomConnection;
 
         await Clients.Group(userRoomConnection.ChatRoomName!)
-            .SendAsync("ReceiveMessage", "Lets Program Bot", $"{userRoomConnection.UserName} has Joined the Group", DateTime.Now);
+            .SendAsync("ReceiveMessage", "mizan", $"{userRoomConnection.UserName} has Joined the Group", DateTime.Now);
 
         await SendConnectedUser(userRoomConnection.ChatRoomName!);
     }
@@ -44,7 +44,7 @@ public class ChatHub: Hub
         _dbContext.connections.TryRemove(Context.ConnectionId, out UserRoomConnection? roomConnection2);
 
         Clients.Group(roomConnection.ChatRoomName!)
-            .SendAsync("ReceiveMessage", "Lets Program bot", $"{roomConnection.UserName} has Left the Group", DateTime.Now);
+            .SendAsync("ReceiveMessage", "mizan", $"{roomConnection.UserName} has Left the Group", DateTime.Now);
         SendConnectedUser(roomConnection.ChatRoomName!);
 
         return base.OnDisconnectedAsync(exp);
